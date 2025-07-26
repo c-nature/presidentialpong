@@ -4,7 +4,7 @@
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 /** @type {string} */
-const CACHE_VERSION = '1753320872|92207197930';
+const CACHE_VERSION = '1753502032|542003759';
 /** @type {string} */
 const CACHE_PREFIX = 'ponggame-sw-cache-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
