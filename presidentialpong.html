@@ -93,16 +93,41 @@ body {
 		<link id="-gd-engine-icon" rel="icon" type="image/png" href="presidentialpong.icon.png" />
 <link rel="apple-touch-icon" href="presidentialpong.apple-touch-icon.png"/>
 <script type="text/javascript">
+  // This will catch any general errors on the page that might prevent scripts from running.
+  window.onerror = function(message, source, lineno, colno, error) {
+    console.error("A general JavaScript error occurred: ", {
+      message: message,
+      source: source,
+      lineno: lineno,
+      colno: colno,
+      error: error
+    });
+  };
+
   function checkIfMobileAndCallback(godotCallback) {
-    const isMobile = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    console.log("JS: checkIfMobileAndCallback function started.");
     
-    // Check if the callback function passed from Godot is valid.
-    if (godotCallback) {
-      // Call the function from Godot directly, passing the result (true or false).
-      godotCallback(isMobile);
+    try {
+      // Log the exact user agent string. This is the most important piece of info.
+      const userAgent = navigator.userAgent;
+      console.log("JS: Full User Agent String:", userAgent);
+
+      const isMobile = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+      console.log("JS: Regex test result (isMobile):", isMobile);
+      
+      if (godotCallback && typeof godotCallback === 'function') {
+        console.log("JS: Godot callback is valid. Attempting to call it with value:", isMobile);
+        godotCallback(isMobile);
+        console.log("JS: Successfully executed Godot callback.");
+      } else {
+        console.error("JS: Godot callback was NOT valid. Type received:", typeof godotCallback);
+      }
+    } catch (e) {
+      console.error("JS: An error occurred inside the checkIfMobileAndCallback function:", e);
     }
   }
 </script>
+
 	</head>
 	<body>
 		<canvas id="canvas">
@@ -121,7 +146,7 @@ body {
 
 		<script src="presidentialpong.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"presidentialpong","experimentalVK":false,"fileSizes":{"presidentialpong.pck":74852592,"presidentialpong.wasm":41848195},"focusCanvas":true,"gdextensionLibs":[]};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"presidentialpong","experimentalVK":false,"fileSizes":{"presidentialpong.pck":74853232,"presidentialpong.wasm":41848195},"focusCanvas":true,"gdextensionLibs":[]};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
