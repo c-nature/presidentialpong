@@ -92,7 +92,17 @@ body {
 		</style>
 		<link id="-gd-engine-icon" rel="icon" type="image/png" href="presidentialpong.icon.png" />
 <link rel="apple-touch-icon" href="presidentialpong.apple-touch-icon.png"/>
-
+<script type="text/javascript">
+  function checkIfMobileAndCallback(godotCallback) {
+    const isMobile = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    // Check if the callback function passed from Godot is valid.
+    if (godotCallback) {
+      // Call the function from Godot directly, passing the result (true or false).
+      godotCallback(isMobile);
+    }
+  }
+</script>
 	</head>
 	<body>
 		<canvas id="canvas">
@@ -111,7 +121,7 @@ body {
 
 		<script src="presidentialpong.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"presidentialpong","experimentalVK":false,"fileSizes":{"presidentialpong.pck":74852192,"presidentialpong.wasm":41848195},"focusCanvas":true,"gdextensionLibs":[]};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"presidentialpong","experimentalVK":false,"fileSizes":{"presidentialpong.pck":74852464,"presidentialpong.wasm":41848195},"focusCanvas":true,"gdextensionLibs":[]};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
